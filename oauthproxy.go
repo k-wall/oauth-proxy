@@ -810,7 +810,11 @@ func (p *OAuthProxy) Authenticate(rw http.ResponseWriter, req *http.Request) int
 		}
 	}
 	if ((!tokenProvidedByClient && p.PassAccessToken) || (tokenProvidedByClient && p.PassUserBearerToken)) && session.AccessToken != "" {
-		req.Header["X-Forwarded-Access-Token"] = []string{session.AccessToken}
+		log.Printf("KWDEBUG passing bearer token instead")
+		req.Header["Authorization"] = []string{"Bearer " + session.AccessToken}
+
+
+		//req.Header["X-Forwarded-Access-Token"] = []string{session.AccessToken}
 	}
 	if session.Email == "" {
 		rw.Header().Set("GAP-Auth", session.User)
