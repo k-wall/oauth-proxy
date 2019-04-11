@@ -204,7 +204,7 @@ $ test/e2e.sh
 
 `oauth-proxy` can be configured via [config file](#config-file), [command line options](#command-line-options) or [environment variables](#environment-variables).
 
-To generate a strong cookie secret use `python -c 'import os,base64; print base64.b64encode(os.urandom(16))'`
+To generate a strong cookie secret use `python -c 'import os,base64; print base64.urlsafe_b64encode(os.urandom(16))'`
 
 ### Email Authentication
 
